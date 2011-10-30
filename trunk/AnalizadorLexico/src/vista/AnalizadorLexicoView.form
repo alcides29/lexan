@@ -264,7 +264,7 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="cadEntradaTextField" min="-2" pref="435" max="-2" attributes="0"/>
+                                      <Component id="cadenaTextField" min="-2" pref="435" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="94" max="32767" attributes="0"/>
@@ -277,7 +277,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cadEntradaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cadenaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
@@ -293,10 +293,10 @@
                         <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="cadEntradaTextField">
+                    <Component class="javax.swing.JTextField" name="cadenaTextField">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="cadEntradaTextField.text"/>
-                        <Property name="name" type="java.lang.String" value="cadEntradaTextField" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="cadenaTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="cadenaTextField" noResource="true"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton3">

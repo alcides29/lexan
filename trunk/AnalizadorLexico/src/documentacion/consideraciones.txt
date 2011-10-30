@@ -1,0 +1,6 @@
+// Consideraciones a tener en cuenta
+// De aqui quitaremos la documentacion
+
+Decisiones tomadas
+* Se considera el punto concatenacion para las expresiones regulares
+*
