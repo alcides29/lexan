@@ -16,6 +16,7 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * The application's main frame.
@@ -112,7 +113,7 @@ public class AnalizadorLexicoView extends FrameView {
         jLabel6 = new javax.swing.JLabel();
         cadEntradaTextField = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        validarDatos = new javax.swing.JButton();
+        validarEntrada = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         exprRegAFN = new javax.swing.JTextField();
@@ -263,8 +264,13 @@ public class AnalizadorLexicoView extends FrameView {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        validarDatos.setText(resourceMap.getString("validarDatos.text")); // NOI18N
-        validarDatos.setName("validarDatos"); // NOI18N
+        validarEntrada.setText(resourceMap.getString("validarEntrada.text")); // NOI18N
+        validarEntrada.setName("validarEntrada"); // NOI18N
+        validarEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validarEntradaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -283,7 +289,7 @@ public class AnalizadorLexicoView extends FrameView {
                             .addComponent(expRegPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(272, 272, 272)
-                        .addComponent(validarDatos)))
+                        .addComponent(validarEntrada)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -298,7 +304,7 @@ public class AnalizadorLexicoView extends FrameView {
                 .addGap(5, 5, 5)
                 .addComponent(expRegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(validarDatos)
+                .addComponent(validarEntrada)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -426,17 +432,49 @@ public class AnalizadorLexicoView extends FrameView {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void alfabetoPredefinidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alfabetoPredefinidoActionPerformed
-        int index = this.alfabetoPredefinido.getSelectedIndex();
-        if (index == 1) {
+
+        int indice = this.alfabetoPredefinido.getSelectedIndex();
+
+        if (indice == 1) {
             this.alfabetoTextField.setText("abcdefghijklmnopqrstuvwxyz");
             this.alfabetoTextField.setEnabled(false);
-        } else if (index == 2) {
+        } else if (indice == 2) {
             this.alfabetoTextField.setText("0123456789");
             this.alfabetoTextField.setEnabled(false);
-        } else { //Personalizado
+        } else {
             this.alfabetoTextField.setEnabled(true);
         }
     }//GEN-LAST:event_alfabetoPredefinidoActionPerformed
+
+    private boolean validarExpReg() {
+        boolean error = false;
+
+        if (this.alfabetoTextField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(alfabetoPanel, "El campo alfabeto no "
+                    + "puede ser vacío");
+            error = true;
+        }else if (this.expRegTextField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(alfabetoPanel, "La expresión regular no "
+                    + "puede ser vacía");
+            error =true;
+        }else if (!this.alfabetoTextField.getText().matches("[a-z0-9]")){
+            JOptionPane.showMessageDialog(alfabetoPanel, "El alfabeto solo puede "
+                    + "contener letras [a-z] o digitos [0-9]");
+            error = true;
+        }
+
+        return error;
+    }
+
+    private void validarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarEntradaActionPerformed
+        boolean datosValidos = this.validarExpReg();
+        String abc = this.alfabetoTextField.getText();
+        String expReg = this.expRegTextField.getText();
+
+        
+
+
+    }//GEN-LAST:event_validarEntradaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alfabetoPanel;
@@ -465,7 +503,7 @@ public class AnalizadorLexicoView extends FrameView {
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
-    private javax.swing.JButton validarDatos;
+    private javax.swing.JButton validarEntrada;
     // End of variables declaration//GEN-END:variables
 
     private final Timer messageTimer;

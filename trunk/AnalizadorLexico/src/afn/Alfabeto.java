@@ -56,7 +56,7 @@ public class Alfabeto extends ArrayList<String> {
      * Obtiene el tamaño del Alfabeto
      * @return Cantidad de simbolos del Alfabeto
      */
-    public int ObtenerTamano() {
+    public int obtenerTamano() {
         return this.size();
     }
 
@@ -64,7 +64,7 @@ public class Alfabeto extends ArrayList<String> {
      * Obtiene un manejador de iteracion sobre el Alfabeto
      * @return el Iterador
      */
-    public Iterator ObtenerIterador() {
+    public Iterator obtenerIterador() {
         return this.iterator();
     }
 }
