@@ -111,7 +111,7 @@ public class AnalizadorLexicoView extends FrameView {
         jLabel5 = new javax.swing.JLabel();
         cadEntradaPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        cadEntradaTextField = new javax.swing.JTextField();
+        cadenaTextField = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         validarEntrada = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -232,8 +232,8 @@ public class AnalizadorLexicoView extends FrameView {
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
 
-        cadEntradaTextField.setText(resourceMap.getString("cadEntradaTextField.text")); // NOI18N
-        cadEntradaTextField.setName("cadEntradaTextField"); // NOI18N
+        cadenaTextField.setText(resourceMap.getString("cadenaTextField.text")); // NOI18N
+        cadenaTextField.setName("cadenaTextField"); // NOI18N
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
@@ -249,7 +249,7 @@ public class AnalizadorLexicoView extends FrameView {
                     .addGroup(cadEntradaPanelLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(cadEntradaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cadenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         cadEntradaPanelLayout.setVerticalGroup(
@@ -258,7 +258,7 @@ public class AnalizadorLexicoView extends FrameView {
                 .addContainerGap()
                 .addGroup(cadEntradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(cadEntradaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cadenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -471,8 +471,6 @@ public class AnalizadorLexicoView extends FrameView {
         String abc = this.alfabetoTextField.getText();
         String expReg = this.expRegTextField.getText();
 
-        
-
 
     }//GEN-LAST:event_validarEntradaActionPerformed
 
@@ -481,7 +479,7 @@ public class AnalizadorLexicoView extends FrameView {
     private javax.swing.JComboBox alfabetoPredefinido;
     private javax.swing.JTextField alfabetoTextField;
     private javax.swing.JPanel cadEntradaPanel;
-    private javax.swing.JTextField cadEntradaTextField;
+    private javax.swing.JTextField cadenaTextField;
     private javax.swing.JLabel expRegLabel;
     private javax.swing.JPanel expRegPanel;
     private javax.swing.JTextField expRegTextField;
