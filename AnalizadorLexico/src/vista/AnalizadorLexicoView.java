@@ -97,7 +97,7 @@ public class AnalizadorLexicoView extends FrameView {
 
         mainPanel = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        expRePanel = new javax.swing.JPanel();
         alfabetoPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         alfabetoTextField = new javax.swing.JTextField();
@@ -114,15 +114,12 @@ public class AnalizadorLexicoView extends FrameView {
         cadenaTextField = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         validarEntrada = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        exprRegAFN = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        afnPanel = new javax.swing.JPanel();
+        afdPanel = new javax.swing.JPanel();
+        afdminPanel = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
-        javax.swing.JMenu fileMenu = new javax.swing.JMenu();
-        javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
-        javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
+        salirMenu = new javax.swing.JMenu();
         statusPanel = new javax.swing.JPanel();
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
@@ -131,7 +128,7 @@ public class AnalizadorLexicoView extends FrameView {
 
         jTabbedPane1.setName("exprRegPanel"); // NOI18N
 
-        jPanel1.setName("jPanel1"); // NOI18N
+        expRePanel.setName("expRePanel"); // NOI18N
 
         alfabetoPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         alfabetoPanel.setName("alfabetoPane"); // NOI18N
@@ -272,29 +269,29 @@ public class AnalizadorLexicoView extends FrameView {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout expRePanelLayout = new javax.swing.GroupLayout(expRePanel);
+        expRePanel.setLayout(expRePanelLayout);
+        expRePanelLayout.setHorizontalGroup(
+            expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(expRePanelLayout.createSequentialGroup()
+                .addGroup(expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(expRePanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
                             .addComponent(alfabetoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cadEntradaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5)
                             .addComponent(expRegPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(expRePanelLayout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(validarEntrada)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        expRePanelLayout.setVerticalGroup(
+            expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(expRePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -312,49 +309,52 @@ public class AnalizadorLexicoView extends FrameView {
                 .addGap(59, 59, 59))
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        jTabbedPane1.addTab(resourceMap.getString("expRePanel.TabConstraints.tabTitle"), expRePanel); // NOI18N
 
-        jPanel2.setName("jPanel2"); // NOI18N
+        afnPanel.setName("afnPanel"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
-
-        exprRegAFN.setText(resourceMap.getString("expRegAFN.text")); // NOI18N
-        exprRegAFN.setName("expRegAFN"); // NOI18N
-
-        jButton4.setLabel(resourceMap.getString("jButton4.label")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(32, 32, 32)
-                .addComponent(exprRegAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(125, Short.MAX_VALUE))
+        javax.swing.GroupLayout afnPanelLayout = new javax.swing.GroupLayout(afnPanel);
+        afnPanel.setLayout(afnPanelLayout);
+        afnPanelLayout.setHorizontalGroup(
+            afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 703, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(exprRegAFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addContainerGap(368, Short.MAX_VALUE))
+        afnPanelLayout.setVerticalGroup(
+            afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
+        jTabbedPane1.addTab(resourceMap.getString("afnPanel.TabConstraints.tabTitle"), afnPanel); // NOI18N
+
+        afdPanel.setName("afdPanel"); // NOI18N
+
+        javax.swing.GroupLayout afdPanelLayout = new javax.swing.GroupLayout(afdPanel);
+        afdPanel.setLayout(afdPanelLayout);
+        afdPanelLayout.setHorizontalGroup(
+            afdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 703, Short.MAX_VALUE)
+        );
+        afdPanelLayout.setVerticalGroup(
+            afdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab(resourceMap.getString("afdPanel.TabConstraints.tabTitle"), afdPanel); // NOI18N
+
+        afdminPanel.setName("afdminPanel"); // NOI18N
+
+        javax.swing.GroupLayout afdminPanelLayout = new javax.swing.GroupLayout(afdminPanel);
+        afdminPanel.setLayout(afdminPanelLayout);
+        afdminPanelLayout.setHorizontalGroup(
+            afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 703, Short.MAX_VALUE)
+        );
+        afdminPanelLayout.setVerticalGroup(
+            afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab(resourceMap.getString("afdminPanel.TabConstraints.tabTitle"), afdminPanel); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -373,24 +373,15 @@ public class AnalizadorLexicoView extends FrameView {
 
         menuBar.setName("menuBar"); // NOI18N
 
-        fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
-        fileMenu.setName("fileMenu"); // NOI18N
-
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(vista.AnalizadorLexicoApp.class).getContext().getActionMap(AnalizadorLexicoView.class, this);
-        exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
-        exitMenuItem.setName("exitMenuItem"); // NOI18N
-        fileMenu.add(exitMenuItem);
-
-        menuBar.add(fileMenu);
-
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setName("helpMenu"); // NOI18N
-
-        aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
-        aboutMenuItem.setName("aboutMenuItem"); // NOI18N
-        helpMenu.add(aboutMenuItem);
-
         menuBar.add(helpMenu);
+
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(vista.AnalizadorLexicoApp.class).getContext().getActionMap(AnalizadorLexicoView.class, this);
+        salirMenu.setAction(actionMap.get("quit")); // NOI18N
+        salirMenu.setText(resourceMap.getString("salirMenu.text")); // NOI18N
+        salirMenu.setName("salirMenu"); // NOI18N
+        menuBar.add(salirMenu);
 
         statusPanel.setName("statusPanel"); // NOI18N
 
@@ -424,12 +415,12 @@ public class AnalizadorLexicoView extends FrameView {
         setMenuBar(menuBar);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String texto = exprRegAFN.getText();
-        Thompson test = new Thompson("ab?", "abc");
-        test.traducir();
-        System.out.println(test.getAutomata().getEnlaces().cantidad());
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void validarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarEntradaActionPerformed
+        boolean datosValidos = this.validarExpReg();
+        String abc = this.alfabetoTextField.getText();
+        String expReg = this.expRegTextField.getText();
+
+    }//GEN-LAST:event_validarEntradaActionPerformed
 
     private void alfabetoPredefinidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alfabetoPredefinidoActionPerformed
 
@@ -444,7 +435,7 @@ public class AnalizadorLexicoView extends FrameView {
         } else {
             this.alfabetoTextField.setEnabled(true);
         }
-    }//GEN-LAST:event_alfabetoPredefinidoActionPerformed
+}//GEN-LAST:event_alfabetoPredefinidoActionPerformed
 
     private boolean validarExpReg() {
         boolean error = false;
@@ -466,38 +457,30 @@ public class AnalizadorLexicoView extends FrameView {
         return error;
     }
 
-    private void validarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarEntradaActionPerformed
-        boolean datosValidos = this.validarExpReg();
-        String abc = this.alfabetoTextField.getText();
-        String expReg = this.expRegTextField.getText();
-
-
-    }//GEN-LAST:event_validarEntradaActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel afdPanel;
+    private javax.swing.JPanel afdminPanel;
+    private javax.swing.JPanel afnPanel;
     private javax.swing.JPanel alfabetoPanel;
     private javax.swing.JComboBox alfabetoPredefinido;
     private javax.swing.JTextField alfabetoTextField;
     private javax.swing.JPanel cadEntradaPanel;
     private javax.swing.JTextField cadenaTextField;
+    private javax.swing.JPanel expRePanel;
     private javax.swing.JLabel expRegLabel;
     private javax.swing.JPanel expRegPanel;
     private javax.swing.JTextField expRegTextField;
-    private javax.swing.JTextField exprRegAFN;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu salirMenu;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
