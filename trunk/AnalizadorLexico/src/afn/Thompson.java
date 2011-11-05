@@ -14,14 +14,16 @@ import java.util.Iterator;
 public class Thompson {
     //private Log log;
 
-    private AnalizadorLexico lexico;
+    //private AnalizadorLexico lexico;
     private String expresionRegular;
+    private StringBuffer exprReg;
     private Alfabeto alfabeto;
     private AFN automata;
     //token
     private Token actual;
     private String errMsg = "";
     private boolean error = false;
+    public final String operadores = "*+?|()";
 
     public Thompson(){
 
@@ -29,8 +31,9 @@ public class Thompson {
     
     public Thompson(String expReg, String alfabeto) {
         this.expresionRegular = expReg;
+        this.exprReg = new StringBuffer(expReg);
         this.alfabeto = new Alfabeto(alfabeto);
-        this.lexico = new AnalizadorLexico(expReg, alfabeto);
+        //this.lexico = new AnalizadorLexico(expReg, alfabeto);
         try {
             this.actual = sgteCaracter();
         } catch (Exception ex) {
@@ -60,8 +63,31 @@ public class Thompson {
      * Obtiene del Analizador Lexico el siguiente token a evaluar
      */
     private Token sgteCaracter() throws Exception {
-        Token sgte = null;
+        /*Token sgte = null;
         sgte = this.lexico.siguienteToken();
+        return sgte;*/
+        Token sgte = null;
+        //sgte = this.lexico.siguienteToken();
+
+        String letra = "";
+        String consumido = "";
+
+        if (this.exprReg.length() > 0) {
+            consumido = Character.toString( this.exprReg.charAt(0) );
+            this.exprReg.deleteCharAt(0);
+        }
+
+        letra = consumido;
+        //se ignora los espacios en blanco y los tabuladores
+        if (letra.equalsIgnoreCase(" ") || letra.equalsIgnoreCase("\t")) {
+            sgte = sgteCaracter();
+        //si es un operador o alfabeto
+        } else if (operadores.indexOf(letra) >= 0 || this.alfabeto.contiene(letra) || letra.length() == 0) {
+            sgte = new Token(letra);
+        //sino es un error
+        } else {
+            throw new Exception("Error con la Expresion");
+        }
         return sgte;
     }
 
