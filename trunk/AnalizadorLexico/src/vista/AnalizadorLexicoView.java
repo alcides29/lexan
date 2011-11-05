@@ -67,8 +67,14 @@ public class AnalizadorLexicoView extends FrameView {
         jButton3 = new javax.swing.JButton();
         validarEntrada = new javax.swing.JButton();
         afnPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         afdPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         afdminPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         salirMenu = new javax.swing.JMenu();
@@ -262,45 +268,117 @@ public class AnalizadorLexicoView extends FrameView {
 
         afnPanel.setName("afnPanel"); // NOI18N
 
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setName("jTable1"); // NOI18N
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout afnPanelLayout = new javax.swing.GroupLayout(afnPanel);
         afnPanel.setLayout(afnPanelLayout);
         afnPanelLayout.setHorizontalGroup(
             afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afnPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addContainerGap())
         );
         afnPanelLayout.setVerticalGroup(
             afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGroup(afnPanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab(resourceMap.getString("afnPanel.TabConstraints.tabTitle"), afnPanel); // NOI18N
 
         afdPanel.setName("afdPanel"); // NOI18N
 
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable2.setName("jTable2"); // NOI18N
+        jScrollPane2.setViewportView(jTable2);
+
         javax.swing.GroupLayout afdPanelLayout = new javax.swing.GroupLayout(afdPanel);
         afdPanel.setLayout(afdPanelLayout);
         afdPanelLayout.setHorizontalGroup(
             afdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afdPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addContainerGap())
         );
         afdPanelLayout.setVerticalGroup(
             afdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 412, Short.MAX_VALUE)
+            .addGroup(afdPanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab(resourceMap.getString("afdPanel.TabConstraints.tabTitle"), afdPanel); // NOI18N
 
         afdminPanel.setName("afdminPanel"); // NOI18N
 
+        jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable3.setName("jTable3"); // NOI18N
+        jScrollPane3.setViewportView(jTable3);
+
         javax.swing.GroupLayout afdminPanelLayout = new javax.swing.GroupLayout(afdminPanel);
         afdminPanel.setLayout(afdminPanelLayout);
         afdminPanelLayout.setHorizontalGroup(
             afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 703, Short.MAX_VALUE)
+            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addContainerGap())
         );
         afdminPanelLayout.setVerticalGroup(
             afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
+            .addGroup(afdminPanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab(resourceMap.getString("afdminPanel.TabConstraints.tabTitle"), afdminPanel); // NOI18N
@@ -418,7 +496,13 @@ public class AnalizadorLexicoView extends FrameView {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu salirMenu;
