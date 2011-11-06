@@ -476,10 +476,36 @@ public class AnalizadorLexicoView extends FrameView {
             JOptionPane.showMessageDialog(alfabetoPanel, "La expresión regular no "
                     + "puede ser vacía");
             error =true;
+        }else if(this.parentesisImpar()){
+            JOptionPane.showMessageDialog(alfabetoPanel, "Verificar la cantidad "
+                    + "de parentesis en la expresion regular");
+            error =true;
         }
 
         return error;
     }
+
+    /*
+     * Metodo para contar parentesis
+     */
+    private boolean parentesisImpar() {
+        String expresion = this.expRegTextField.getText();
+        int correcto = 0;
+        int i = 0;
+
+        for(i=0; i < expresion.length(); i++){
+            if (expresion.charAt(i) == '('){
+                correcto++;
+            }else if (expresion.charAt(i) == ')')
+                correcto--;
+        }
+
+        if (correcto == 0)
+            return false;
+        else
+            return true;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel afdPanel;
