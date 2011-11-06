@@ -25,7 +25,7 @@ public class AnalizadorLexicoView extends FrameView {
 
     public AnalizadorLexicoView(SingleFrameApplication app) {
         super(app);
-        initComponents(); 
+        initComponents();
     }
 
     @Action
@@ -491,9 +491,7 @@ public class AnalizadorLexicoView extends FrameView {
     }//GEN-LAST:event_salirMenuMouseClicked
 
     private void traducirAFNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_traducirAFNActionPerformed
-        String pruebita = exprRegAFN.getText();
-        System.out.println(pruebita);
-        Thompson prueba = new Thompson(pruebita, "ab");
+        Thompson prueba = new Thompson(exprRegAFN.getText(), alfabetoTextField.getText());
         prueba.traducir();
         TabladelAutomata test = new TabladelAutomata(prueba.getAutomata());
 
