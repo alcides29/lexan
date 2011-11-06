@@ -425,9 +425,14 @@ public class AnalizadorLexicoView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void validarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarEntradaActionPerformed
-        boolean datosValidos = this.validarExpReg();
+        boolean datosErroneo = this.validarExpReg();
         String abc = this.alfabetoTextField.getText();
         String expReg = this.expRegTextField.getText();
+
+        if(!datosErroneo){
+            JOptionPane.showMessageDialog(afnPanel, "Los datos se han verificado"
+                    + "correctamente");
+        }
 
     }//GEN-LAST:event_validarEntradaActionPerformed
 
@@ -463,14 +468,14 @@ public class AnalizadorLexicoView extends FrameView {
             JOptionPane.showMessageDialog(alfabetoPanel, "El campo alfabeto no "
                     + "puede ser vacío");
             error = true;
+        }else if (!this.alfabetoTextField.getText().matches("[a-z]*[0-9]*")){
+            JOptionPane.showMessageDialog(alfabetoPanel, "El alfabeto solo puede "
+                    + "contener letras [a-z] o digitos [0-9]");
+            error = true;
         }else if (this.expRegTextField.getText().isEmpty()){
             JOptionPane.showMessageDialog(alfabetoPanel, "La expresión regular no "
                     + "puede ser vacía");
             error =true;
-        }else if (!this.alfabetoTextField.getText().matches("[a-z0-9]")){
-            JOptionPane.showMessageDialog(alfabetoPanel, "El alfabeto solo puede "
-                    + "contener letras [a-z] o digitos [0-9]");
-            error = true;
         }
 
         return error;
