@@ -14,7 +14,7 @@ import java.util.Iterator;
  * @author marcos
  */
 public class ListaTransiciones extends ArrayList<Transicion> {
-    private int id;                                     //id de la lista
+   private int id;                                     //id de la lista
     private HashMap<String, Integer> TablaEnlaces;      //tabla hash para la lista de enlaces, permite indexar para cada símbolo del alfabeto, el índice del array list
     private ArrayList<Transicion> vacios;                   //lista de enlaces cuyo label es el 'e'
 
@@ -123,12 +123,12 @@ public class ListaTransiciones extends ArrayList<Transicion> {
      * Concatenar una lista enlaces a esta al final.
      * @param l
      */
-    public void insertarListaEnlaces(ListaTransiciones l) {
-        Iterator <Transicion> i = l.getIterator();
+    public void insertarListaEnlaces(ListaTransiciones lista) {
+        Iterator <Transicion> iterador = lista.getIterator();
         Transicion current;
 
-        while(i.hasNext()) {
-            current = i.next();
+        while(iterador.hasNext()) {
+            current = iterador.next();
             this.insertar(current);
         }
     }
