@@ -4,6 +4,7 @@
 
 package vista;
 
+import afn.AnalizadorLexico;
 import afn.Thompson;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
@@ -454,13 +455,34 @@ public class AnalizadorLexicoView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void validarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarEntradaActionPerformed
-        boolean datosErroneo = this.validarExpReg();
+        boolean datosErroneos = this.validarExpReg();
         String abc = this.alfabetoTextField.getText();
         String expReg = this.expRegTextField.getText();
 
-        if(!datosErroneo){
-            JOptionPane.showMessageDialog(afnPanel, "Los datos se han verificado"
+        /*
+         * Si todo esta bien, generamos el AFN
+         */
+        if(!datosErroneos){
+            JOptionPane.showMessageDialog(afnPanel, "Los datos se han verificado "
                     + "correctamente");
+
+            Thompson analizadorLex = new Thompson(expReg, abc);
+            datosErroneos = analizadorLex.isHayErrores();
+
+            if (datosErroneos) {
+                JOptionPane.showMessageDialog(expRePanel, analizadorLex.getErrMsg(),
+                        "datosErroneos", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                // AFN
+                analizadorLex.setAutomata(analizadorLex.traducir());
+
+                TabladelAutomata test = new TabladelAutomata(analizadorLex.getAutomata());
+
+                test.arreglarObjetosNulos();
+                tablaAFN.setModel(test);
+            }
+            datosErroneos = analizadorLex.isHayErrores();
         }
 
     }//GEN-LAST:event_validarEntradaActionPerformed
@@ -481,12 +503,10 @@ public class AnalizadorLexicoView extends FrameView {
 }//GEN-LAST:event_alfabetoPredefinidoActionPerformed
 
     private void salirMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirMenuActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_salirMenuActionPerformed
 
     private void salirMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirMenuMouseClicked
-        // TODO add your handling code here:
         this.salirMenuActionPerformed(null);
     }//GEN-LAST:event_salirMenuMouseClicked
 

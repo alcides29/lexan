@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Thompson {
     //private Log log;
 
-    //private AnalizadorLexico lexico;
+    private AnalizadorLexico lexico;
     private String expresionRegular;
     private StringBuffer exprReg;
     private Alfabeto alfabeto;
@@ -33,13 +33,16 @@ public class Thompson {
         this.expresionRegular = expReg;
         this.exprReg = new StringBuffer(expReg);
         this.alfabeto = new Alfabeto(alfabeto);
-        //this.lexico = new AnalizadorLexico(expReg, alfabeto);
+        this.lexico = new AnalizadorLexico(expReg, alfabeto);
+
+
         try {
             this.actual = sgteCaracter();
         } catch (Exception ex) {
             this.errMsg = "La Expresion no coincide con el Alfabeto";
             this.error = true;
         }
+        
         automata = new AFN();
         automata.setTipo("AFN");
     }
