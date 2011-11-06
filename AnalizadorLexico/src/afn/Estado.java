@@ -6,16 +6,11 @@
 package afn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-
 /**
  *
  * @author marcos
  */
-public class Estado {
+public class Estado implements Comparable<Estado> {
     private int id;
     private ListaTransiciones enlaces;
 
@@ -133,7 +128,7 @@ public class Estado {
      * @return
      */
     public Estado estadoDestinoString(String a){
-        for(Transicion x: enlaces){
+        for(Transicion x: this.enlaces){
             if(x.getEtiqueta().compareTo(a)== 0){
                 return x.getDestino();
             }
@@ -221,5 +216,5 @@ public class Estado {
             result = result + "(ini)";
         }
         return result;
-    }    
+    }
 }
