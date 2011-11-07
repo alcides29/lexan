@@ -50,12 +50,12 @@ public class TabladelAutomata extends AbstractTableModel {
 
             //fixed titulo
             this.nombresColumnas[0] = "ESTADOS";
-            
+            this.nombresColumnas[1] = "ɛ";
             // Si es AFN, se debe tener entre los elementos del alfabeto al vacio
-            if (true){//this.automata.getTipo() == TipoAutomata.AFN) {
-                this.nombresColumnas[1] = "ɛ";
+            //if (true){//this.automata.getTipo() == TipoAutomata.AFN) {
+                //this.nombresColumnas[1] = "ɛ";
                 //this.nombresColumnas[0] = "ESTADOS";
-            }
+            //}
 
             this.loadTable();
         }
@@ -139,19 +139,6 @@ public class TabladelAutomata extends AbstractTableModel {
     public Class getColumnClass(int c) {
         return this.getValueAt(0, c).getClass();
     }
-
-    @Override
-    public int findColumn(String columnName) {
-        //nombresColumnas
-        String nombre = "";
-        for (int i = 0; i < getColumnCount(); i++) {
-             nombre = getColumnName(i);
-            if (columnName.equals(nombre)) {
-                return i;
-            }
-        }
-        return -1;
-    }
     
     /**
      * Arreglar las posiciones de la Tabla donde no se estableció ningún valor
@@ -180,7 +167,7 @@ public class TabladelAutomata extends AbstractTableModel {
             ListaTransiciones enlaces = current.getEnlaces();    // Obtenemos sus enlaces
             int rowEstado = current.getId();                // La fila del estado es igual a su id
             
-            String estadoLabel = "S" + rowEstado+"";
+            String estadoLabel = "S" + rowEstado + "";
             if (current.isEstadoinicial()) {
                 estadoLabel+="(ini)";
             }
@@ -189,7 +176,7 @@ public class TabladelAutomata extends AbstractTableModel {
                 estadoLabel+="(fin)";
             }
             
-            this.setValueAt(estadoLabel,rowEstado, 0);
+            this.setValueAt(estadoLabel, rowEstado, 0);
             
             // Iteramos sobre los enlaces para agregar los destinos en las celdas
             // adecuadas de la matriz
@@ -220,7 +207,7 @@ public class TabladelAutomata extends AbstractTableModel {
                 ((ListaEstados) estados).add(destino);                       // agregamos el nuevo destino a la lista
                 
                 // Cargamos la lista de nuevo en la matriz de objetos                
-                this.setValueAt(estados,rowEstado, indexCol);
+                this.setValueAt(estados, rowEstado, indexCol);
             }            
         }        
     }    

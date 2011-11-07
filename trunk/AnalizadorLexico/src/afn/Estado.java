@@ -207,7 +207,7 @@ public class Estado implements Comparable<Estado> {
 
     @Override
     public String toString() {
-        String result = ""+id;
+        String result = "S"+id;
         if (this.isEstadofinal()) {
             result = result + "(fin)";
         }
