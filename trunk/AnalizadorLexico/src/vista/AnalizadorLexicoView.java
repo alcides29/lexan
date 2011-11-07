@@ -4,6 +4,7 @@
 
 package vista;
 
+import afn.AFN;
 import afn.AnalizadorLexico;
 import afn.Thompson;
 import org.jdesktop.application.Action;
@@ -18,6 +19,7 @@ import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  * The application's main frame.
@@ -65,15 +67,13 @@ public class AnalizadorLexicoView extends FrameView {
         cadEntradaPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         cadenaTextField = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        validarCadenaButton = new javax.swing.JButton();
         validarEntrada = new javax.swing.JButton();
         afnPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAFN = new javax.swing.JTable();
-        traducirAFN = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        exprRegAFN = new javax.swing.JTextField();
+        afnPasoAPasoButton = new javax.swing.JButton();
+        afnPasoAPasoLabel = new javax.swing.JLabel();
         afdPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -137,19 +137,19 @@ public class AnalizadorLexicoView extends FrameView {
         expRegPanelLayout.setHorizontalGroup(
             expRegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, expRegPanelLayout.createSequentialGroup()
-                .addContainerGap(277, Short.MAX_VALUE)
+                .addContainerGap(215, Short.MAX_VALUE)
                 .addComponent(expRegLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(expRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(97, 97, 97))
         );
         expRegPanelLayout.setVerticalGroup(
             expRegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(expRegPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(expRegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(expRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(expRegLabel))
+                    .addComponent(expRegLabel)
+                    .addComponent(expRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -170,8 +170,13 @@ public class AnalizadorLexicoView extends FrameView {
         cadenaTextField.setText(resourceMap.getString("cadenaTextField.text")); // NOI18N
         cadenaTextField.setName("cadenaTextField"); // NOI18N
 
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
+        validarCadenaButton.setText(resourceMap.getString("validarCadenaButton.text")); // NOI18N
+        validarCadenaButton.setName("validarCadenaButton"); // NOI18N
+        validarCadenaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validarCadenaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout cadEntradaPanelLayout = new javax.swing.GroupLayout(cadEntradaPanel);
         cadEntradaPanel.setLayout(cadEntradaPanelLayout);
@@ -180,12 +185,12 @@ public class AnalizadorLexicoView extends FrameView {
             .addGroup(cadEntradaPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cadEntradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
+                    .addComponent(validarCadenaButton)
                     .addGroup(cadEntradaPanelLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
                         .addComponent(cadenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         cadEntradaPanelLayout.setVerticalGroup(
             cadEntradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +200,7 @@ public class AnalizadorLexicoView extends FrameView {
                     .addComponent(jLabel6)
                     .addComponent(cadenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(validarCadenaButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -212,20 +217,20 @@ public class AnalizadorLexicoView extends FrameView {
         expRePanelLayout.setHorizontalGroup(
             expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(expRePanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(expRePanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
                             .addComponent(cadEntradaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5)
                             .addComponent(expRegPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(alfabetoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)))
-                    .addGroup(expRePanelLayout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addComponent(validarEntrada)))
-                .addContainerGap())
+                            .addComponent(alfabetoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, expRePanelLayout.createSequentialGroup()
+                        .addComponent(validarEntrada)
+                        .addGap(107, 107, 107))))
         );
         expRePanelLayout.setVerticalGroup(
             expRePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +243,9 @@ public class AnalizadorLexicoView extends FrameView {
                 .addComponent(jLabel3)
                 .addGap(5, 5, 5)
                 .addComponent(expRegPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validarEntrada)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cadEntradaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,72 +274,37 @@ public class AnalizadorLexicoView extends FrameView {
         tablaAFN.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("tablaAFN.columnModel.title0")); // NOI18N
         tablaAFN.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("tablaAFN.columnModel.title1")); // NOI18N
 
-        traducirAFN.setText(resourceMap.getString("traducirAFN.text")); // NOI18N
-        traducirAFN.setName("traducirAFN"); // NOI18N
-        traducirAFN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                traducirAFNActionPerformed(evt);
-            }
-        });
+        afnPasoAPasoButton.setText(resourceMap.getString("afnPasoAPasoButton.text")); // NOI18N
+        afnPasoAPasoButton.setEnabled(false);
+        afnPasoAPasoButton.setName("afnPasoAPasoButton"); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setName("jPanel1"); // NOI18N
-
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
-
-        exprRegAFN.setText(resourceMap.getString("exprRegAFN.text")); // NOI18N
-        exprRegAFN.setName("exprRegAFN"); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(exprRegAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(exprRegAFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        afnPasoAPasoLabel.setFont(resourceMap.getFont("afnPasoAPasoLabel.font")); // NOI18N
+        afnPasoAPasoLabel.setText(resourceMap.getString("afnPasoAPasoLabel.text")); // NOI18N
+        afnPasoAPasoLabel.setName("afnPasoAPasoLabel"); // NOI18N
 
         javax.swing.GroupLayout afnPanelLayout = new javax.swing.GroupLayout(afnPanel);
         afnPanel.setLayout(afnPanelLayout);
         afnPanelLayout.setHorizontalGroup(
             afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(afnPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(afnPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(afnPanelLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afnPanelLayout.createSequentialGroup()
-                .addContainerGap(586, Short.MAX_VALUE)
-                .addComponent(traducirAFN)
-                .addGap(46, 46, 46))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(afnPasoAPasoButton)
+                        .addComponent(afnPasoAPasoLabel)))
+                .addGap(27, 27, 27))
         );
         afnPanelLayout.setVerticalGroup(
             afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(afnPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(traducirAFN)
+                .addGap(19, 19, 19)
+                .addComponent(afnPasoAPasoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(afnPasoAPasoButton)
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("afnPanel.TabConstraints.tabTitle"), afnPanel); // NOI18N
@@ -363,14 +333,14 @@ public class AnalizadorLexicoView extends FrameView {
             afdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afdPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
                 .addContainerGap())
         );
         afdPanelLayout.setVerticalGroup(
             afdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(afdPanelLayout.createSequentialGroup()
                 .addGap(136, 136, 136)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -400,14 +370,14 @@ public class AnalizadorLexicoView extends FrameView {
             afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afdminPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
                 .addContainerGap())
         );
         afdminPanelLayout.setVerticalGroup(
             afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(afdminPanelLayout.createSequentialGroup()
                 .addGap(136, 136, 136)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -474,15 +444,14 @@ public class AnalizadorLexicoView extends FrameView {
                         "datosErroneos", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
+
                 // AFN
                 analizadorLex.setAutomata(analizadorLex.traducir());
-
                 TabladelAutomata test = new TabladelAutomata(analizadorLex.getAutomata());
-
                 test.arreglarObjetosNulos();
                 tablaAFN.setModel(test);
             }
-            datosErroneos = analizadorLex.isHayErrores();
+            
         }
 
     }//GEN-LAST:event_validarEntradaActionPerformed
@@ -510,15 +479,39 @@ public class AnalizadorLexicoView extends FrameView {
         this.salirMenuActionPerformed(null);
     }//GEN-LAST:event_salirMenuMouseClicked
 
-    private void traducirAFNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_traducirAFNActionPerformed
-        Thompson prueba = new Thompson(exprRegAFN.getText(), alfabetoTextField.getText());
-        prueba.traducir();
-        TabladelAutomata test = new TabladelAutomata(prueba.getAutomata());
+    private void validarCadenaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarCadenaButtonActionPerformed
 
-        test.arreglarObjetosNulos();
-        tablaAFN.setModel(test);
-        //this.resetTablaRenderer(Tabla);
-    }//GEN-LAST:event_traducirAFNActionPerformed
+        String cadena = this.cadenaTextField.getText();
+        //String alfabeto = this.alfabetoTextField.getText();
+
+        this.afnPasoAPasoButton.setEnabled(true);
+        
+
+        /*
+         * Verificamos si la cadena pertenece al alfabeto
+         */
+        /*
+        if(cadena.matches(alfabeto)){
+            JOptionPane.showMessageDialog(afnPanel, "La cadena corresponde al "
+                    + "alfabeto");
+            this.afnPasoAPasoButton.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(afnPanel, "La cadena no corresponde al "
+                    + "alfabeto");
+        }
+         */
+    }//GEN-LAST:event_validarCadenaButtonActionPerformed
+
+    /**
+     * Pinta los pasos del automata a la tabla de transiciones
+     *
+     * @param Tabla Jtable para el automata
+     * @param AFN Automata (AFN, AFD o AFDMin)
+     */
+    public void pintarTabla(JTable Tabla, AFN automata) {
+        TabladelAutomata tmodel = new TabladelAutomata(automata);
+        Tabla.setModel(tmodel);
+    }
 
     private boolean validarExpReg() {
         boolean error = false;
@@ -570,6 +563,8 @@ public class AnalizadorLexicoView extends FrameView {
     private javax.swing.JPanel afdPanel;
     private javax.swing.JPanel afdminPanel;
     private javax.swing.JPanel afnPanel;
+    private javax.swing.JButton afnPasoAPasoButton;
+    private javax.swing.JLabel afnPasoAPasoLabel;
     private javax.swing.JPanel alfabetoPanel;
     private javax.swing.JComboBox alfabetoPredefinido;
     private javax.swing.JTextField alfabetoTextField;
@@ -579,16 +574,12 @@ public class AnalizadorLexicoView extends FrameView {
     private javax.swing.JLabel expRegLabel;
     private javax.swing.JPanel expRegPanel;
     private javax.swing.JTextField expRegTextField;
-    private javax.swing.JTextField exprRegAFN;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -599,7 +590,7 @@ public class AnalizadorLexicoView extends FrameView {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu salirMenu;
     private javax.swing.JTable tablaAFN;
-    private javax.swing.JButton traducirAFN;
+    private javax.swing.JButton validarCadenaButton;
     private javax.swing.JButton validarEntrada;
     // End of variables declaration//GEN-END:variables
 
