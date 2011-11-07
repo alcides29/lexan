@@ -47,15 +47,14 @@ public class TabladelAutomata extends AbstractTableModel {
             this.cantidadFilas = this.automata.getEstados().size();
             this.nombresColumnas = new String[this.cantidadColumnas];
             this.datos = new Object[this.cantidadFilas][this.cantidadColumnas];
-            this.cantidadRealColumnas = 0;
 
             //fixed titulo
             this.nombresColumnas[0] = "ESTADOS";
             
             // Si es AFN, se debe tener entre los elementos del alfabeto al vacio
             if (true){//this.automata.getTipo() == TipoAutomata.AFN) {
-                this.nombresColumnas[1] = "€";
-                this.nombresColumnas[0] = "ESTADOS";
+                this.nombresColumnas[1] = "ɛ";
+                //this.nombresColumnas[0] = "ESTADOS";
             }
 
             this.loadTable();
@@ -140,6 +139,19 @@ public class TabladelAutomata extends AbstractTableModel {
     public Class getColumnClass(int c) {
         return this.getValueAt(0, c).getClass();
     }
+
+    @Override
+    public int findColumn(String columnName) {
+        //nombresColumnas
+        String nombre = "";
+        for (int i = 0; i < getColumnCount(); i++) {
+             nombre = getColumnName(i);
+            if (columnName.equals(nombre)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     
     /**
      * Arreglar las posiciones de la Tabla donde no se estableció ningún valor
@@ -168,7 +180,7 @@ public class TabladelAutomata extends AbstractTableModel {
             ListaTransiciones enlaces = current.getEnlaces();    // Obtenemos sus enlaces
             int rowEstado = current.getId();                // La fila del estado es igual a su id
             
-            String estadoLabel = rowEstado+"";
+            String estadoLabel = "S" + rowEstado+"";
             if (current.isEstadoinicial()) {
                 estadoLabel+="(ini)";
             }
@@ -184,7 +196,7 @@ public class TabladelAutomata extends AbstractTableModel {
             for (Iterator<Transicion> ite = enlaces.getIterator(); ite.hasNext();) {
                 
                 Transicion currentLink = ite.next();            // enlace actual a procesar
-                String symbol = currentLink.getEtiqueta();  // simbolo del enlace                
+                String symbol = currentLink.getEtiqueta();  // simbolo del enlace
                 int indexCol = this.findColumn(symbol);     // obtenemos la columna de la etiqueta
                 
                 // Si la columna obtenida es -1, todavía no se cargó 

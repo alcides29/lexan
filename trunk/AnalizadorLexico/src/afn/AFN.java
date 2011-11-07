@@ -25,7 +25,7 @@ public class AFN {
     /**
      * para representar epsilon, vacio
      */
-    public String empty = "€";
+    public String empty = "ɛ";
     /**
      * variable auxiliar utilizada para indicar el nivel
      */

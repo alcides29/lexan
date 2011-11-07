@@ -18,7 +18,7 @@ import java.util.Iterator;
  * @author marcos
  */
 public class Subconjuntos {
-    AFN afn;                        //el AFN de entrada
+    AFN AFN;                        //el AFN de entrada
     private Dtrans dtrans;               //matriz para representar el AFD
     ArrayList<ListaEstados> Destados;    //lista de estados
 
@@ -26,8 +26,8 @@ public class Subconjuntos {
      *
      * @param AFN
      */
-    public Subconjuntos(AFN afn) {
-        this.afn = afn;
+    public Subconjuntos(AFN AFN) {
+        this.AFN = AFN;
         dtrans = new Dtrans();
         Destados = new ArrayList();
     }
@@ -42,7 +42,7 @@ public class Subconjuntos {
         Token simbolo;
         ListaEstados U;
 
-        Estado est_inicial = afn.getEstados().getEstadoInicial();
+        Estado est_inicial = AFN.getEstados().getEstadoInicial();
         ListaEstados list_est = e_cerradura(est_inicial, new ListaEstados());
         list_est.setId(0);
         Destados.add(list_est);
@@ -52,7 +52,7 @@ public class Subconjuntos {
             ListaEstados T = estadoSinMarcar();
             T.setMarcado(true);
 
-            iterdor = afn.getAlpha().iterator();
+            iterdor = AFN.getAlpha().iterator();
             while(iterdor.hasNext()){
                 simbolo = new Token((String)iterdor.next());
                 U = e_cerradura(mover(T, simbolo));
@@ -67,7 +67,7 @@ public class Subconjuntos {
                 }else{
                     U.setId(id_U);
                 }
-                clave = new DtransClave(T, simbolo);
+                clave = new DtransClave(T,simbolo);
                 dtrans.setValor(clave, U);
             }
         }
@@ -82,8 +82,8 @@ public class Subconjuntos {
         Iterator it = s.getEnlaces().getIterator();
         ListaEstados listaNueva = null;
         while(it.hasNext()){
-            Transicion e = (Transicion) it.next();
-            if(e.getEtiqueta().compareTo("€") == 0){
+           Transicion e = (Transicion) it.next();
+            if(e.getEtiqueta().compareTo("ɛ") == 0){
                 listaNueva = e_cerradura(e.getDestino(), listaActual);
                 listaActual = concatListas(listaActual, listaNueva );
 
@@ -233,32 +233,32 @@ public class Subconjuntos {
      * @param AFD
      * @return
      */
-    public static AFD eliminar_estados_inalcanzables(AFN afd){
-        Estado inicial = afd.getInicial();
-        afd.getEstados().resetVisitas();
+    public static AFN eliminar_estados_inalcanzables(AFN AFD){
+        Estado inicial = AFD.getInicial();
+        AFD.getEstados().resetVisitas();
         visitarRecursivo(inicial);
 
-        AFD nuevoAFD = new AFD();
-        nuevoAFD.setAlfabeto(afd.getAlpha());
-        nuevoAFD.setExpresion(afd.getRegex());
+        AFN AFDNEW = new AFN();
+        AFDNEW.setAlfabeto(AFD.getAlpha());
+        AFDNEW.setExpresion(AFD.getRegex());
 
-        Iterator it = afd.getEstados().getIterator();
+        Iterator it = AFD.getEstados().getIterator();
         while(it.hasNext()){
             Estado e = (Estado)it.next();
             if(e.isVisitado()){
 
                 if(e.isEstadoinicial()){
-                   nuevoAFD.setInicial(e);
+                   AFDNEW.setInicial(e);
                 }
                 if(e.isEstadofinal()){
-                    nuevoAFD.getFinales().insertar(e);
+                    AFDNEW.getFinales().insertar(e);
                 }
-                nuevoAFD.addEstado(e);
+                AFDNEW.addEstado(e);
             }
 
         }
 
-        return nuevoAFD;
+        return AFDNEW;
     }
 
     /**
@@ -277,4 +277,3 @@ public class Subconjuntos {
         }
     }
 }
-
