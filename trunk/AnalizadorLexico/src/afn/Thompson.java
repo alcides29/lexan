@@ -39,7 +39,7 @@ public class Thompson {
         try {
             this.actual = sgteCaracter();
         } catch (Exception ex) {
-            this.errMsg = "La Expresion no coincide con el Alfabeto";
+            this.errMsg = "No se respeta el alfabeto";
             this.error = true;
         }
         
@@ -56,21 +56,16 @@ public class Thompson {
         if ( ObtenerActual().compareTo(tok) == 0 ) {
             this.setActual(this.sgteCaracter());
         } else {
-            //this.errMsg = "No se pudo consumir la entrada";
             throw new Exception("No se pudo consumir la entrada");
 
         }
     }
 
     /*
-     * Obtiene del Analizador Lexico el siguiente token a evaluar
+     * Obtiene el siguiente token a evaluar
      */
     private Token sgteCaracter() throws Exception {
-        /*Token sgte = null;
-        sgte = this.lexico.siguienteToken();
-        return sgte;*/
         Token sgte = null;
-        //sgte = this.lexico.siguienteToken();
 
         String letra = "";
         String consumido = "";
@@ -95,20 +90,19 @@ public class Thompson {
     }
 
     /**
-     * Metodo que se encarga del analisis sintactico de la expresion. Utiliza el
-     * siguiente BNF para realizar la evaluacion:
+     * Utiliza el siguiente BNF para realizar la evaluacion:
      * So -> EXP1 OR
-     * EXP1 -> EXP2 EXP1 | €
-     * OR -> '|' EXP1 OR | €
+     * EXP1 -> EXP2 EXP1 | ɛ
+     * OR -> '|' EXP1 OR | ɛ
      * EXP 2 -> EXP3 OPERACION
      * EXP3 -> PARENTESIS | alfabeto
-     * OPERACION -> * | + | ? | €
+     * OPERACION -> * | + | ? | ɛ
      * PARENTESIS -> '(' So ')'
      *
      * @return El automata finito no determinista (AFN) de la expresion
      */
     public AFN traducir() {
-        this.automata = this.So();
+        this.automata = this.so();
         if (!this.isHayErrores()) {
             if (actual.getTipo() != Token.TipoToken.FIN) {
                 this.error = true;
@@ -129,12 +123,12 @@ public class Thompson {
      * Metodo correspondiente a la Produccion:
      * So -> EXP1 OR
      */
-    private AFN So() {
+    private AFN so() {
         AFN automataIzq = null;
         AFN automataDer;
         try {
-            automataIzq = this.EXP1();
-            automataDer = this.OR();
+            automataIzq = this.exp1();
+            automataDer = this.or();
             if (automataDer != null) {
                 thompson_or(automataIzq, automataDer); //automata equivalente a (r|s)
             }
@@ -149,13 +143,13 @@ public class Thompson {
      * Metodo correspondiente a la Produccion:
      * OR -> '|' EXP1 OR | €
      */
-    private AFN OR() throws Exception {
+    private AFN or() throws Exception {
         try {
             Token or = new Token("|");
 
             if (actual.compareTo(or) == 0) {
                 this.Match("|");
-                return So();
+                return so();
             } else {
                 return null;
             }
@@ -169,23 +163,32 @@ public class Thompson {
      * Metodo correspondiente a la Produccion:
      * EXP1 -> EXP2 EXP1 | €
      */
-    private AFN EXP1() throws Exception {
-        AFN automataIzq = this.EXP2();
-        AFN automataDer = this.preEXP1();
+    private AFN exp1() throws Exception {
+        String current = actual.getValor();
+        AFN a = null;
 
-        if (automataDer != null) {
-            thompson_concat(automataIzq, automataDer); //automata equivalente a rs
+        if ( (actual.getTipo() != Token.TipoToken.FIN) && (this.alfabeto.contiene(current) || current.compareTo("(")==0)) {
+            //a = this.exp1();
+            AFN automataIzq = this.exp2();
+            AFN automataDer = this.exp1();
+
+            if (automataDer != null) {
+                thompson_concat(automataIzq, automataDer); //automata equivalente a rs
+            }
+
+            //return automataIzq;
+            a= automataIzq;
         }
 
-        return automataIzq;
+        return a;
     }
 
-    private AFN EXP2() throws Exception {
+    private AFN exp2() throws Exception {
 
-        AFN a = EXP3();
+        AFN a = exp3();
 
         if (a != null) {
-            char op = OPERACION();
+            char op = operacion();
 
             switch (op) {
                 case '*':
@@ -197,7 +200,7 @@ public class Thompson {
                 case '?':
                     thompsonCeroUno(a); //automata equivalente a r?
                     break;
-                case '€':
+                case 'ɛ':
                     break;
             }
         }
@@ -205,33 +208,15 @@ public class Thompson {
     }
 
     /*
-     * Si el valor actual es un simbolo del alfabeto o el caracter '('. Se llama
-     * a EXP1 sino se retorna null
-     */
-    private AFN preEXP1() throws Exception {
-
-        String current = actual.getValor();
-        AFN a = null;
-
-        if ( (actual.getTipo() != Token.TipoToken.FIN) &&
-             (this.alfabeto.contiene(current) || current.compareTo("(")==0)
-           ) {
-            a = this.EXP1();
-        }
-
-        return a;
-    }
-
-    /*
      * Metodo correspondiente a la Produccion:
      * EXP3 -> PARENTESIS | alfabeto
      */
-    private AFN EXP3() throws Exception {
+    private AFN exp3() throws Exception {
 
         Token parentesisAbierto = new Token("(");
 
         if(actual.compareTo(parentesisAbierto) == 0) {
-            return this.PARENTESIS();
+            return this.parentesis();
         } else {
             return this.alfabeto();
         }
@@ -241,8 +226,8 @@ public class Thompson {
      * Metodo correspondiente a la Produccion:
      * OPERACION -> * | + | ? | €
      */
-    private char OPERACION() throws Exception {
-        char operador = '€';
+    private char operacion() throws Exception {
+        char operador = 'ɛ';
 
         if (actual.getValor().compareTo("") != 0) {
             operador = actual.getValor().charAt(0);
@@ -258,7 +243,7 @@ public class Thompson {
                     this.Match("?");
                     break;
                 default:
-                    return '€';
+                    return 'ɛ';
             }
         }
         return operador;
@@ -268,7 +253,7 @@ public class Thompson {
      * Metodo correspondiente a la Produccion:
      * PARENTESIS -> '(' So ')'
      */
-    private AFN PARENTESIS() throws Exception {
+    private AFN parentesis() throws Exception {
         try {
             this.Match("(");
         } catch (Exception ex) {
@@ -276,7 +261,7 @@ public class Thompson {
             throw new Exception("No se pudo consumir '('");
         }
 
-        AFN a = this.So();
+        AFN a = this.so();
 
         try {
             this.Match(")");
