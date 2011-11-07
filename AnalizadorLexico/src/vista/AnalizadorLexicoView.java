@@ -30,10 +30,14 @@ import javax.swing.JTable;
  * The application's main frame.
  */
 public class AnalizadorLexicoView extends FrameView {
-
+    private DibujarAutomata dibujar;
+    private AFN afn;
+    private AFN afd;
+    private AFN afdMin;
     public AnalizadorLexicoView(SingleFrameApplication app) {
         super(app);
         initComponents();
+        expRePanel.requestFocus();
     }
 
     @Action
@@ -80,18 +84,21 @@ public class AnalizadorLexicoView extends FrameView {
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         exprRegAFN = new javax.swing.JTextField();
+        grafAFN = new javax.swing.JButton();
         afdPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaAFD = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         exprRegAFD = new javax.swing.JTextField();
+        grafAFD = new javax.swing.JButton();
         afdminPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaAFDMin = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         exprRegAFDMin = new javax.swing.JTextField();
+        grafAFDMin = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         salirMenu = new javax.swing.JMenu();
@@ -149,19 +156,19 @@ public class AnalizadorLexicoView extends FrameView {
         expRegPanelLayout.setHorizontalGroup(
             expRegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, expRegPanelLayout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(expRegLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(expRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(expRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
         );
         expRegPanelLayout.setVerticalGroup(
             expRegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(expRegPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(expRegPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(expRegLabel)
-                    .addComponent(expRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expRegLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -320,6 +327,14 @@ public class AnalizadorLexicoView extends FrameView {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        grafAFN.setText(resourceMap.getString("grafAFN.text")); // NOI18N
+        grafAFN.setName("grafAFN"); // NOI18N
+        grafAFN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grafAFNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout afnPanelLayout = new javax.swing.GroupLayout(afnPanel);
         afnPanel.setLayout(afnPanelLayout);
         afnPanelLayout.setHorizontalGroup(
@@ -333,13 +348,19 @@ public class AnalizadorLexicoView extends FrameView {
                         .addGap(22, 22, 22)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afnPanelLayout.createSequentialGroup()
+                .addContainerGap(594, Short.MAX_VALUE)
+                .addComponent(grafAFN)
+                .addGap(38, 38, 38))
         );
         afnPanelLayout.setVerticalGroup(
             afnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(afnPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(16, 16, 16)
+                .addComponent(grafAFN)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(192, Short.MAX_VALUE))
         );
@@ -396,6 +417,14 @@ public class AnalizadorLexicoView extends FrameView {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        grafAFD.setText(resourceMap.getString("grafAFD.text")); // NOI18N
+        grafAFD.setName("grafAFD"); // NOI18N
+        grafAFD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grafAFDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout afdPanelLayout = new javax.swing.GroupLayout(afdPanel);
         afdPanel.setLayout(afdPanelLayout);
         afdPanelLayout.setHorizontalGroup(
@@ -409,13 +438,19 @@ public class AnalizadorLexicoView extends FrameView {
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afdPanelLayout.createSequentialGroup()
+                .addContainerGap(592, Short.MAX_VALUE)
+                .addComponent(grafAFD)
+                .addGap(40, 40, 40))
         );
         afdPanelLayout.setVerticalGroup(
             afdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(afdPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(grafAFD)
+                .addGap(8, 8, 8)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addGap(71, 71, 71))
         );
@@ -472,6 +507,14 @@ public class AnalizadorLexicoView extends FrameView {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        grafAFDMin.setText(resourceMap.getString("grafAFDMin.text")); // NOI18N
+        grafAFDMin.setName("grafAFDMin"); // NOI18N
+        grafAFDMin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grafAFDMinActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout afdminPanelLayout = new javax.swing.GroupLayout(afdminPanel);
         afdminPanel.setLayout(afdminPanelLayout);
         afdminPanelLayout.setHorizontalGroup(
@@ -479,21 +522,27 @@ public class AnalizadorLexicoView extends FrameView {
             .addGroup(afdminPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afdminPanelLayout.createSequentialGroup()
+                    .addGroup(afdminPanelLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, afdminPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
+                        .addComponent(grafAFDMin)
+                        .addGap(35, 35, 35))))
+            .addGroup(afdminPanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         afdminPanelLayout.setVerticalGroup(
             afdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(afdminPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(8, 8, 8)
+                .addComponent(grafAFDMin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                .addGap(76, 76, 76))
+                .addGap(71, 71, 71))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("afdminPanel.TabConstraints.tabTitle"), afdminPanel); // NOI18N
@@ -562,6 +611,7 @@ public class AnalizadorLexicoView extends FrameView {
                 // AFN
                 exprRegAFN.setText(expReg);
                 thompson.traducir();
+                afn = thompson.getAutomata();
                 this.cargarTabla(tablaAFN, thompson.getAutomata());
                 Dtrans dtran;
                 Subconjuntos subconjunto = new Subconjuntos(thompson.getAutomata());
@@ -569,7 +619,7 @@ public class AnalizadorLexicoView extends FrameView {
                     //AFD
                     exprRegAFD.setText(expReg);
                     dtran = subconjunto.ejecutar();
-                    AFN afd = dtran.convertAutomata();
+                    afd = dtran.convertAutomata();
                     afd = Subconjuntos.eliminar_estados_inalcanzables(afd);
                     afd.setAlfabeto(thompson.getAutomata().getAlpha());
                     afd.setExpresion(exprRegAFN.getText());
@@ -577,7 +627,7 @@ public class AnalizadorLexicoView extends FrameView {
                     //AFDMin
                     exprRegAFDMin.setText(expReg);
                     Minimizacion minimizacion = new Minimizacion(afd);
-                    AFN afdMin = minimizacion.minimizar();
+                    afdMin = minimizacion.minimizar();
                     afdMin.eliminar_estados_muertos();
                     afdMin.setAlfabeto(afd.getAlpha());
                     afdMin.setExpresion(exprRegAFN.getText());
@@ -636,6 +686,24 @@ public class AnalizadorLexicoView extends FrameView {
          */
     }//GEN-LAST:event_validarCadenaButtonActionPerformed
 
+    private void grafAFNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafAFNActionPerformed
+        if(this.afn!= null){
+            graficarAutomata(afn, "AFN");
+        }
+    }//GEN-LAST:event_grafAFNActionPerformed
+
+    private void grafAFDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafAFDActionPerformed
+        if(this.afd!= null){
+            graficarAutomata(afd, "AFD");
+        }
+    }//GEN-LAST:event_grafAFDActionPerformed
+
+    private void grafAFDMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafAFDMinActionPerformed
+        if(this.afdMin!= null){
+            graficarAutomata(afdMin, "AFD Minimo");
+        }
+    }//GEN-LAST:event_grafAFDMinActionPerformed
+
     /**
      * Pinta los pasos del automata a la tabla de transiciones
      *
@@ -678,6 +746,18 @@ public class AnalizadorLexicoView extends FrameView {
 //this.resetTablaRenderer(Tabla);
     }
 
+    private void graficarAutomata(AFN automata, String titulo) {
+        if(this.dibujar==null){
+            this.dibujar = new DibujarAutomata(automata);
+            this.dibujar.setVisible(true);
+            this.dibujar.toFront();
+            this.dibujar.setTitulo(titulo);
+        } else {
+            this.dibujar = null;
+            this.graficarAutomata(automata, titulo);
+
+        }
+    }
     /*
      * Metodo para contar parentesis
      */
@@ -716,6 +796,9 @@ public class AnalizadorLexicoView extends FrameView {
     private javax.swing.JTextField exprRegAFD;
     private javax.swing.JTextField exprRegAFDMin;
     private javax.swing.JTextField exprRegAFN;
+    private javax.swing.JButton grafAFD;
+    private javax.swing.JButton grafAFDMin;
+    private javax.swing.JButton grafAFN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
