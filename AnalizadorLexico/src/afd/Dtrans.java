@@ -5,6 +5,7 @@
 
 package afd;
 
+import afn.AFN;
 import afn.Estado;
 import afn.ListaEstados;
 import afn.Token;
@@ -68,8 +69,8 @@ public class Dtrans {
      *
      * @return
      */
-    public AFD convertAutomata(){
-        AFD a = new AFD();
+    public AFN convertAutomata(){
+        AFN a = new AFN();
 
         Enumeration en = dtrans.keys();
         while(en.hasMoreElements()){
@@ -123,3 +124,4 @@ public class Dtrans {
         return a;
     }
 }
+

@@ -19,7 +19,7 @@ import java.util.Iterator;
  */
 public class Subconjuntos {
     AFN afn;                        //el AFN de entrada
-    //private Dtrans dtrans;               //matriz para representar el AFD
+    private Dtrans dtrans;               //matriz para representar el AFD
     ArrayList<ListaEstados> Destados;    //lista de estados
 
     /**
@@ -28,7 +28,7 @@ public class Subconjuntos {
      */
     public Subconjuntos(AFN afn) {
         this.afn = afn;
-        //dtrans = new Dtrans();
+        dtrans = new Dtrans();
         Destados = new ArrayList();
     }
 
@@ -37,7 +37,7 @@ public class Subconjuntos {
      * @return
      * @throws Exception
      */
-    /*public Dtrans ejecutar() throws Exception{
+    public Dtrans ejecutar() throws Exception{
         Iterator iterdor;
         Token simbolo;
         ListaEstados U;
@@ -48,7 +48,7 @@ public class Subconjuntos {
         Destados.add(list_est);
 
         while (hayEstadosSinMarcar()){
-            //DtransClave clave;
+            DtransClave clave;
             ListaEstados T = estadoSinMarcar();
             T.setMarcado(true);
 
@@ -67,12 +67,12 @@ public class Subconjuntos {
                 }else{
                     U.setId(id_U);
                 }
-                //clave = new DtransClave(T,simbolo);
-                //dtrans.setValor(clave, U);
+                clave = new DtransClave(T, simbolo);
+                dtrans.setValor(clave, U);
             }
         }
         return this.dtrans;
-    }*/
+    }
 
     /**
      * Implementa y ejecuta el algoritmo e_cerradura(s),
@@ -233,7 +233,7 @@ public class Subconjuntos {
      * @param AFD
      * @return
      */
-    public static AFD eliminar_estados_inalcanzables(AFD afd){
+    public static AFD eliminar_estados_inalcanzables(AFN afd){
         Estado inicial = afd.getInicial();
         afd.getEstados().resetVisitas();
         visitarRecursivo(inicial);

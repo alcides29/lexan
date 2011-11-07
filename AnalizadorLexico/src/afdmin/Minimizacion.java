@@ -6,6 +6,7 @@
 package afdmin;
 
 import afd.AFD;
+import afn.AFN;
 import afn.Estado;
 import afn.ListaEstados;
 import afn.Transicion;
@@ -19,13 +20,13 @@ import java.util.Iterator;
  */
 public class Minimizacion {
 
-    AFD afd;
+    AFN afd;
 
     /**
      *
      * @param automata
      */
-    public Minimizacion(AFD automata){
+    public Minimizacion(AFN automata){
         this.afd = automata;
     }
 
